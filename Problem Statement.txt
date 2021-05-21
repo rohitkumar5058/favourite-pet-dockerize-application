@@ -1,0 +1,24 @@
+#Favourite pet application is a simple application which makes use of 5 diffrent services(Refer Architcture pic).Bacially what it does user can cast their vote to choose his/her favourite pet among dog and cat and the result is shown to the user.
+
+
+Workflow: when user cast the vote on voting-app(built on python) ,the vote gets stored in memory key value database i.e Redis. After that Worker(dot net based application) takes the redis stored value convert it into percentage and stored that percentage value in the postgres database (Use Postgres:9.4) which is later used by the result-app(Node.js application) to show the result to the user.Everything is already provided and  you just have to carefully follow all instructions and run it.
+ 
+For clearity see the attachments  where user has cast the vote for his favourite pet(vote-input image)i.e cat and after that output on ui is 100%(vote-output) for cats which means user has selected cat as his faourite pet
+
+
+Task 1#: Without Docker compose...(follow the steps sequentially )
+
+a. Create custom docker images for applications and give tags such as voting-app, result-app worker-app (Docker files have already been provided).
+b. pull redis image and  postgres:9.4 from dockerhub and run them in detached mode with container names redis and db(for postgres9.4) .
+c. run the voting-app in background and it works on 80 so exposed it on port 5000 .
+c. link the redis to the voting-app.
+d. link the redis(redis) and postgres(db) with the worker-app.
+e. run the worker-app and link it with redis(redis) and postgres(db) both.  
+f. run the result-app on port 5001 against port 80 and link it with postgres.
+ 
+
+Task 2#: With Docker compose
+- Create a docker compose network for the five services and  achive all the above steps in Task 1  using docker compose.
+
+
+
